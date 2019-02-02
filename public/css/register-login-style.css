@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo');
+
+body{
+    font-family: 'Cairo' , sans-serif;
+    background: #29274E;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #29274E, #000428);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #29274E, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    direction: rtl;
+}
+a{
+    color: #e53935;
+}
+a:hover{
+    text-decoration: none;
+    color: #e53935;
+}
+
+.header-title-color{
+
+    background: #e53935;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #dc3545, #e53935);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #dc3545, #e53935); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.content-border{
+    border-bottom: 1px solid #29274E;
+}
+
+
+.labels-color{
+
+
+    background: -webkit-linear-gradient(to right, #29274E, #000428);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #29274E, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.form-control:focus {
+    border-color: #29274E;
+    box-shadow: none;
+    outline: 0 none;
+}
+
+.form-rounded{
+    border-radius: 1rem;
+}
+select{
+    width: 268px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border: 0;
+    border-radius: 5px;
+    height: 34px;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #ddd;
+    -webkit-appearance: none;
+    background-position-x: 244px;
+}
+
+/*.btn-danger {*/
+    /*color: #fff;*/
+    /*background-color: #dc3545;*/
+    /*border-color: #dc3545;*/
+/*}*/
+
+/*#E4454A*/

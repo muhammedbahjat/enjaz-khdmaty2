@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>أكلاتي</title>
+
+    <!--jquery CDN-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+
+    <!--font awesome icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <!--bootstrap 4.2.1-->
+    <link rel="stylesheet" href="bootstrap-4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="bootstrap-4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--custom css style-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--custom js -->
+    <script src="js/backend.js"></script>
+
+    <!--DataTables CDN-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+
+</head>
+
+<body>
+
+<!--start navbar-->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bgNavColor">
+    <a class="navbar-brand bg-white rounded text-danger px-2" href="/">أكلاتي</a>
+    <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#myNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="myNav">
+
+        <ul class="navbar-nav text-right">
+            <li class="nav-item active">
+                <a class="nav-link nav-effect" href="/"><i class="fas fa-tachometer-alt"></i> الرئيسية </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-effect" href="/items"><i class="fas fa-utensils"></i> الأكلات </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-effect" href="/orders"><i class="fas fa-boxes"></i> الطلبات </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-effect" href="/categories"><i class="fas fa-th-large"></i> الأصناف </a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav  mr-sm-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                    <img src="../public/imgs/profilePic.jpg" class="" width="40" alt="">
+                    قاسم محمد
+                </a>
+                <div class="dropdown-menu text-right" id="dropdown">
+                    <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> الأعدادات </a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج </a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+</nav>
+<!--end nav bar-->
+
+<!--start div container-->
+<div class="container-fluid">
+
+
+    <div class="row ">
+
+        <div class="col-lg-11 mr-3  bg-white shadow pb-3">
+            <div class="d-flex">
+                <h4 class="text-right pt-3"><i class="fas fa-utensils  text-danger"></i> الأكلات </h4>
+                <button id="add-button" type="button" class="btn btn-success  mr-auto m-3" data-toggle="modal" data-target="#addModal">
+                    <i class="far fa-plus-square fa-1x"></i> أكلة جديدة
+                </button>
+            </div>
+            <hr>
+
+            <!--start Table-->
+            <div class="table-responsive-sm ">
+                <table class="table table-striped ">
+
+                    <!--start Table Head-->
+                    <thead class="text-center bg-danger text-white ">
+                    <tr>
+                        <th># تسلسل</th>
+                        <th>رمز الأكلة</th>
+                        <th>أسم الأكلة</th>
+                        <th>صنف الأكلة</th>
+                        <th>سعر الأكلة</th>
+                        <th>تفاصيل عنها</th>
+                        <th>الفعاليات</th>
+                    </tr>
+                    </thead>
+                    <!--end Table Head-->
+
+                    <!--start Table Body-->
+                    <tbody class="text-center">
+                    <% if(items.length > 0){ %>
+                        <% var i=1; items.forEach(function(item){
+                             %>
+                    <tr>
+                        <td><%= i %></td>
+                        <td><%= item.Id %></td>
+                        <td><%= item.item_name %></td>
+                        <td><%= item.category_name %></td>
+                        <td><%= item.item_price %></td>
+                        <td><p><%= item.item_description %></p></td>
+                        <td class="text-center">
+                            <a href="/items/<%= item.uuid %>" id="show-item" class="show-item btn btn-info btn-sm text-white" data-toggle="modal"
+                               data-target="#editModal">
+                                <i class="fas fa-eye"></i>
+                                مشاهدة
+                            </a>
+                        </td>
+                    </tr>
+                    <%  i++;}); %>
+                    <% } %>
+                    </tbody>
+                    <!--end Table Body-->
+
+                </table>
+            </div>
+            <!--end Table-->
+
+            <!--Add Modal -->
+            <div class="modal fade text-right" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+
+                    <div class="modal-content">
+                        <div class="modal-header text-white card-color">
+                            <h5 class="modal-title"><i class="far fa-plus-square"></i> أكلة جديدة :</h5>
+                        </div>
+
+                        <div class="modal-body ">
+                            <form id="addForm" action="/items/insert" method="POST" enctype="multipart/form-data">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="addItemName"><i class="fas fa-utensils text-danger"></i> أسم الأكلة
+                                            : </label>
+                                        <input type="text" class="form-control form-control-sm" name="addItemName"
+                                               id="addItemName" required>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="addItemPrice"><i class="far fa-money-bill-alt text-danger"></i>
+                                            السعر :</label>
+                                        <input type="number" class="form-control form-control-sm" name="addItemPrice"
+                                               id="addItemPrice" required>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="addItemCategory"><i class="fas fa-th text-danger"></i> صنف الأكلة :</label>
+                                        <select class="form-control" name="addItemCategory"
+                                                id="addItemCategory" required>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="addcustomFile"><i class="fas fa-image text-danger"></i> صورة
+                                            الأكلة :</label>
+                                        <div class="custom-file text-left">
+                                            <input type="file" class="custom-file-input" id="addcustomFile" name="addItemImage">
+                                            <label class="custom-file-label" for="addcustomFile">أختر صورة</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <label for="addItemDescription"><i class="far fa-file-alt text-danger"></i>
+                                            تفاصيل الأكلة :</label>
+                                        <textarea class="form-control form-control-sm" rows="2" cols="30"
+                                                  id="addItemDescription" name="addItemDescription"></textarea>
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <div class="modal-footer justify-content-center justify-content-between card-color">
+                            <a href="#" id="addForm-button" role="button" class="btn btn-success btn-md text-white"><i
+                                    class="far fa-plus-square"></i> حفظ </a>
+                            <button type="button" class="btn btn-danger btn-md" data-dismiss="modal"><i
+                                    class="far fa-times-circle"></i> أغلاق
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--end Add Edit Modal-->
+
+            <!--Edit Modal -->
+            <div class="modal fade text-right" id="editModal" tabindex="-1" role="dialog"
+                 aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <img id="itemImage" class="blure-image img-fluid vw-100" src="">
+                            <img class="rounded-circle border border-danger overly-item-image" height="120" width="120"
+                                 src="../public/imgs/food.jpg">
+                        </div>
+
+                        <div class="modal-body ">
+                            <form id="editForm" action="http://localhost:3000/items/update" method="POST" enctype="multipart/form-data">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="itemName"><i class="fas fa-utensils text-danger"></i> أسم الأكلة :
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm" name="itemName"
+                                               id="itemName" required>
+                                        <input type="hidden" class="form-control form-control-sm" name="itemId"
+                                               id="itemId">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="itemPrice"><i class="far fa-money-bill-alt text-danger"></i> السعر :</label>
+                                        <input type="number" class="form-control form-control-sm" name="itemPrice"
+                                               id="itemPrice" required>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="itemCategory"><i class="fas fa-th text-danger"></i> صنف الأكلة
+                                            :</label>
+                                        <select name="itemCategory" id="itemCategory" class='form-control'>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="editcustomFile"><i class="fas fa-image text-danger"></i> صورة
+                                            الأكلة :</label>
+                                        <div class="custom-file text-left">
+                                            <input type="file" class="custom-file-input" id="editcustomFile" name="itemImage">
+                                            <label class="custom-file-label" for="editcustomFile">أختر صورة</label>
+                                            <input type="hidden" class="form-control form-control-sm" name="itemImageEdit"
+                                               id="itemImageEdit">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <label for="itemDescription"><i class="far fa-file-alt text-danger"></i> تفاصيل
+                                            الأكلة :</label>
+                                        <textarea class="form-control form-control-sm" rows="2" cols="30"
+                                                  id="itemDescription" name="itemDescription"></textarea>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <div class="modal-footer justify-content-center justify-content-between card-color">
+                            <a href="#" role="button" id="editForm-button" class="btn btn-warning btn-md text-white"><i
+                                    class="far fa-edit"></i> تعديل </a>
+                            <a href="#" role="button" class="btn btn-danger btn-md text-white" data-dismiss="modal"
+                               data-toggle="modal" data-target="#deleteModal"><i class="far fa-trash-alt"></i> حذف </a>
+                            <button  type="button" class="btn btn-primary btn-md" id="closeEditModal" data-dismiss="modal"><i
+                                    class="far fa-times-circle"></i> أغلاق
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end Edit Modal-->
+
+            <!--Delete Modal -->
+            <div class="modal fade text-right" id="deleteModal" tabindex="-1" role="dialog"
+                 aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+
+                    <div class="modal-content">
+                        <div class="modal-header text-white card-color">
+                            <h5 class="modal-title"><i class="far fa-trash-alt"></i> حذف الأكلة :</h5>
+                        </div>
+
+                        <div class="modal-body ">
+                            <form action="">
+                                <div class="form-row">
+                                    <div class="form-group col-12 text-center">
+                                        <img src="../public/imgs/food.jpg" class="shadow rounded" width="100"
+                                             height="100" alt="">
+                                    </div>
+                                    <div class="form-group col-12 text-center">
+                                        <h5 class="">هل أنت متأكد من حذف </h5>
+                                        <h4 id="deleteItemAlert" class="text-danger"></h4>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <div class="modal-footer justify-content-center justify-content-between card-color">
+                            <a href="#" id="delete-item"  role="button" class="btn btn-danger btn-md text-white"><i
+                                    class="far fa-trash-alt"></i> حذف </a>
+                            <button type="button" class="btn btn-primary btn-md" data-dismiss="modal"><i
+                                    class="far fa-times-circle"></i> أغلاق
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end Delete Modal-->
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!--end div container-->
+
+
+
+<script>
+    $(".modal").on("hidden.bs.modal", function() {
+        $(this).find('form').trigger("reset");
+        $('.custom-file-label').html('أختر صورة');
+    });
+
+    $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
+    });
+</script>
+
+</body>
+</html>

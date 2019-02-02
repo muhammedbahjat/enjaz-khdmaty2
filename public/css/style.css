@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo');
+
+body{
+    font-family: 'Cairo' , sans-serif;
+    background-color: #F3F3F3;
+    direction: rtl;
+    padding-top: 90px;
+}
+
+/*-------------------------------
+|| change default navbar color ||
+---------------------------------*/
+.bgNavColor{
+    background-color: #333244;
+}
+
+/*----------------------
+|| card hover effect ||
+------------------------*/
+.myShadow{
+    box-shadow: 1px 2px 5px #999999;
+    transition: all .4s;
+}
+
+.myShadow:hover{
+    box-shadow: 2px 3px 15px #999999;
+    transform: translateY(-1px);
+}
+
+/*-----------------------------------------
+|| edit default head break border shadow ||
+-------------------------------------------*/
+hr {
+    box-shadow: 1px 2px 5px #999999;
+}
+
+/*---------------------------------
+|| card header and footer color ||
+-----------------------------------*/
+.card-color{
+    background-color: #333244;
+}
+
+/*---------------------------------
+|| Navbar hover effect underline ||
+-----------------------------------*/
+.nav-effect {
+    display: inline-block;
+    color: #dc3545;
+}
+
+.nav-effect:hover::after {
+    width: 100%;
+}
+
+.nav-effect::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #dc3545;
+    transition: width .3s;
+}
+
+
+/*---------------------------------
+||  Add the blur effect ||
+-----------------------------------*/
+
+.blure-image {
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+}
+
+/*------------------------------------------------
+||  set the height of default bootsrap img-fluid ||
+--------------------------------------------------*/
+.img-fluid {
+    height: 170px!important;
+}
+
+/*-----------------------
+|| overly item profile ||
+--------------------------*/
+.modal-header{
+    position: relative;
+}
+.modal-header .overly-item-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+

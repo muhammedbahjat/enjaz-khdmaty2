@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>أكلاتي</title>
+
+    <!--jquery CDN-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+
+    <!--font awesome icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <!--bootstrap 4.2.1-->
+    <link rel="stylesheet" href="/bootstrap-4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="/bootstrap-4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--custom css style-->
+    <link rel="stylesheet" href="/css/register-login-style.css">
+    <!--custom js -->
+    <script src="js/backend.js"></script>
+
+</head>
+
+
+<body>
+
+
+<!--start div container-->
+<div class="container ">
+
+<div class="row   mt-5 justify-content-center ">
+
+<div class="col-lg-3 col-md-3 col-sm-9 header-title-color text-white text-center   shadow-lg">
+    <div class="pt-lg-5 pt-md-5 pt-sm-2">
+    <h3>خدماتي</h3>
+    <h5>تسجيل عميل جديد</h5>
+    </div>
+</div>
+
+<div class="col-lg-9 col-md-9 col-sm-9 bg-white shadow text-right  pt-2 rounded">
+
+        <form id="registerForm" action="/register" method="post" enctype="multipart/form-data">
+            <div class="form-row ">
+
+                <div class="form-group col-md-6">
+                    <label for="agentType"><i class="fas fa-th text-danger"></i>
+                        <span class="labels-color">  نوع العميل :</span>
+                    </label>
+                        <select name="agentType" id="agentType" class="custom-select custom-select-sm form-rounded">
+                            <option selected hidden>أختر نوع العميل</option>
+                            <option value="1">مطعم</option>
+                            <option value="2">ربة بيت</option>
+                        </select>
+                </div>
+
+                <div class="form-group col-md-6 ">
+                    <label for="agentName"><i class="fas fa-user text-danger"></i>
+                        <span class="labels-color"> أسم العميل :</span>
+                    </label>
+                    <input type="text" class="form-control form-control-sm form-rounded" name="agentName"
+                           id="agentName"  placeholder="مثلا..مطعم فلان او بيت فلان" required>
+                </div>
+
+                <div class="form-group col-md-6 ">
+                    <label for="agentPhone"><i class="fas fa-mobile-alt text-danger"></i>
+                        <span class="labels-color">  رقم الهاتف :</span>
+                    </label>
+                    <input type="number" class="form-control form-control-sm form-rounded" name="agentPhone"
+                           id="agentPhone" placeholder="07701010101" required>
+                </div>
+
+                <div class="form-group col-md-6 ">
+                    <label for="agentEmail"><i class="far fa-envelope text-danger"></i>
+                        <span class="labels-color">  البريد الألكتروني :</span>
+                    </label>
+                    <input type="email" class="form-control form-control-sm form-rounded" name="agentEmail"
+                           id="agentEmail" placeholder=" مثلا ... example@gmail.com" required>
+                </div>
+
+                <div class="form-group col-md-6 ">
+                    <label for="agentPassword"><i class="fas fa-unlock-alt text-danger"></i>
+                        <span class="labels-color">  كلمة المرور :</span>
+                    </label>
+                    <input type="password" class="form-control form-control-sm form-rounded" name="agentPassword"
+                           id="agentPassword" placeholder="*****" required>
+                </div>
+
+                <div class="form-group col-md-6 ">
+                    <label for="agentRetypePassword"><i class="fas fa-unlock-alt text-danger"></i>
+                        <span class="labels-color"> أعادة كلمة المرور :</span>
+                    </label>
+                    <input type="password" class="form-control form-control-sm form-rounded" name="agentRetypePassword"
+                           id="agentRetypePassword" required placeholder="*****">
+                </div>
+
+                <div class="form-group col-md-6 ">
+                    <label for="agentAddress"><i class="fas fa-map-marked-alt text-danger"></i>
+                        <span class="labels-color"> العنوان الكامل :</span>
+                    </label>
+                    <input type="text" class="form-control form-control-sm form-rounded" name="agentAddress"
+                           id="agentAddress" placeholder="مثلا ... بغداد - الكاظمية - ساحة الزهراء " required>
+                </div>
+
+                <div class="form-group col-md-6 ">
+                    <label for="editcustomFile"><i class="fas fa-image text-danger"></i>
+                    <span class="labels-color"> شعار او صورة خاصة ب(المطعم , البيت):</span>
+                    </label>
+                    <div class="custom-file text-left ">
+                        <input type="file" class="custom-file-input form-rounded" id="agentImage" name="agentImage">
+                        <label class="custom-file-label" for="editcustomFile">أختر صورة</label>
+                    </div>
+                </div>
+
+                <div class="form-group col-12 ">
+                    <label for="agentDescription"><i class="far fa-file-alt text-danger"></i>
+                        <span class="labels-color">وصف وجيز خاص بعملك :</span>
+                    </label>
+                    <textarea class="form-control form-control-sm form-rounded" rows="2" cols="30"
+                              id="agentDescription" name="agentDescription" placeholder="مثلا ... نحن نقدم خدمات تشمل توصيل الأكلات و البضائع بصورة سريعة وخدمات مميز.. الخ "></textarea>
+                </div>
+
+                <div class="form-group col-12">
+                    <label for="agentPassword">
+                        <span class="text-muted">  أذا كان لديك حساب وترغب بالدخول ؟ <a href="login.ejs">أضغط هنا</a></span>
+                    </label>
+                </div>
+
+                <div class="form-group col-12">
+                    <a href="#" id="registerform-button" class="btn btn-danger btn-block form-rounded" role="button">
+                        <i class="fas fa-user-plus"></i>
+                        <span>تسجيل</span>
+                    </a>
+                </div>
+
+            </div>
+        </form>
+</div>
+
+</div>
+
+</div>
+
+
+<!--end div container-->
+<script>
+
+</script>
+</body>
+</html>
